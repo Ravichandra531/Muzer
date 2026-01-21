@@ -61,7 +61,7 @@ function SignInContent() {
     };
 
     return (
-        <div className="min-h-screen flex">
+        <div className="min-h-screen flex flex-col items-center justify-center">
             {/* Left Side - Auth Form */}
             <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-[#0a0a0a]">
                 <div className="w-full max-w-md space-y-8">
@@ -108,7 +108,7 @@ function SignInContent() {
                         <span>Continue with Google</span>
                     </button>
 
-                    
+
                     <div className="relative">
                         <div className="absolute inset-0 flex items-center">
                             <div className="w-full border-t border-neutral-800"></div>
@@ -206,26 +206,7 @@ function SignInContent() {
                 </div>
             </div>
 
-            <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-gradient-to-br from-purple-900 via-purple-800 to-pink-900">
-                {/* Animated Background Pattern */}
-                <div className="absolute inset-0 opacity-20">
-                    <div className="absolute top-20 left-20 w-72 h-72 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
-                    <div className="absolute top-40 right-20 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
-                    <div className="absolute bottom-20 left-40 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
-                </div>
 
-                <div className="relative z-10 flex flex-col justify-center px-16 text-white">
-                    <div className="space-y-8">
-                        <h2 className="text-5xl font-bold leading-tight">
-                            The Future of <span className="bg-gradient-to-r from-cyan-300 to-pink-300 bg-clip-text text-transparent">Music Streaming</span> Starts Here
-                        </h2>
-                    </div>
-                </div>
-
-          
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-pink-500/20 to-transparent rounded-tl-full"></div>
-                <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-cyan-500/20 to-transparent rounded-br-full"></div>
-            </div>
 
             <style jsx>{`
                 @keyframes blob {
