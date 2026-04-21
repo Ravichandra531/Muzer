@@ -30,7 +30,7 @@ function SignInContent() {
             if (result?.error) {
                 setError("Invalid credentials");
             } else {
-                router.push(callbackUrl);
+                router.push("/dashboard");
             }
         } else {
             try {
@@ -47,7 +47,7 @@ function SignInContent() {
                         password,
                     });
                     if (!result?.error) {
-                        router.push(callbackUrl);
+                        router.push("/dashboard");
                     }
                 }
             } catch (e) {
@@ -61,31 +61,31 @@ function SignInContent() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center">
-            {/* Left Side - Auth Form */}
-            <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-[#0a0a0a]">
-                <div className="w-full max-w-md space-y-8">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-zinc-950 p-4 sm:p-6 lg:p-8">
+            {/* Auth Form */}
+            <div className="w-full max-w-md">
+                <div className="w-full space-y-6 sm:space-y-8">
                     {/* Logo/Brand */}
                     <div className="space-y-2">
-                        <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                        <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                             MUZER
                         </h1>
                     </div>
 
                     {/* Welcome Text */}
                     <div className="space-y-2">
-                        <h2 className="text-4xl font-bold text-white">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-white">
                             Welcome Back
                         </h2>
-                        <p className="text-neutral-400">
+                        <p className="text-sm sm:text-base text-neutral-400">
                             Sign in to continue to your account
                         </p>
                     </div>
 
                     {/* OAuth Button */}
                     <button
-                        onClick={() => signIn("google", { callbackUrl })}
-                        className="w-full flex items-center justify-center gap-3 px-4 py-3.5 bg-white text-gray-900 rounded-xl hover:bg-gray-50 transition-all font-medium shadow-sm"
+                        onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+                        className="w-full flex items-center justify-center gap-3 px-4 py-3 sm:py-3.5 bg-white text-gray-900 rounded-xl hover:bg-gray-50 transition-all font-medium shadow-sm text-sm sm:text-base"
                     >
                         <svg className="w-5 h-5" viewBox="0 0 24 24">
                             <path
@@ -114,14 +114,14 @@ function SignInContent() {
                             <div className="w-full border-t border-neutral-800"></div>
                         </div>
                         <div className="relative flex justify-center text-sm">
-                            <span className="px-4 bg-[#0a0a0a] text-neutral-500 uppercase tracking-wider text-xs">
+                            <span className="px-4 bg-zinc-950 text-neutral-500 uppercase tracking-wider text-xs">
                                 Or continue with email
                             </span>
                         </div>
                     </div>
 
 
-                    <form onSubmit={handleSubmit} className="space-y-5">
+                    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                         {!isLogin && (
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-neutral-300">
@@ -131,7 +131,7 @@ function SignInContent() {
                                     type="text"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
-                                    className="w-full px-4 py-3.5 bg-neutral-950/50 border border-neutral-800 rounded-xl focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500/50 text-white placeholder-neutral-500 outline-none transition-all"
+                                    className="w-full px-4 py-3 sm:py-3.5 bg-neutral-950/50 border border-neutral-800 rounded-xl focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/50 text-white placeholder-neutral-500 outline-none transition-all text-sm sm:text-base"
                                     placeholder="Enter your name"
                                 />
                             </div>
@@ -146,7 +146,7 @@ function SignInContent() {
                                 required
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="w-full px-4 py-3.5 bg-neutral-950/50 border border-neutral-800 rounded-xl focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500/50 text-white placeholder-neutral-500 outline-none transition-all"
+                                className="w-full px-4 py-3 sm:py-3.5 bg-neutral-950/50 border border-neutral-800 rounded-xl focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/50 text-white placeholder-neutral-500 outline-none transition-all text-sm sm:text-base"
                                 placeholder="name@example.com"
                             />
                         </div>
@@ -160,7 +160,7 @@ function SignInContent() {
                                 required
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="w-full px-4 py-3.5 bg-neutral-950/50 border border-neutral-800 rounded-xl focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500/50 text-white placeholder-neutral-500 outline-none transition-all"
+                                className="w-full px-4 py-3 sm:py-3.5 bg-neutral-950/50 border border-neutral-800 rounded-xl focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/50 text-white placeholder-neutral-500 outline-none transition-all text-sm sm:text-base"
                                 placeholder="Enter your password"
                             />
                         </div>
@@ -171,7 +171,7 @@ function SignInContent() {
                                     type="checkbox"
                                     checked={rememberMe}
                                     onChange={(e) => setRememberMe(e.target.checked)}
-                                    className="w-4 h-4 rounded border-neutral-700 bg-neutral-900 text-purple-500 focus:ring-2 focus:ring-purple-500/30"
+                                    className="w-4 h-4 rounded border-neutral-700 bg-neutral-900 text-indigo-500 focus:ring-2 focus:ring-indigo-500/30"
                                 />
                                 <span className="text-sm text-neutral-400 group-hover:text-neutral-300 transition-colors">
                                     Remember me
@@ -180,14 +180,14 @@ function SignInContent() {
                         )}
 
                         {error && (
-                            <div className="p-3.5 text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-xl">
+                            <div className="p-3 sm:p-3.5 text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-xl">
                                 {error}
                             </div>
                         )}
 
                         <button
                             type="submit"
-                            className="w-full py-3.5 bg-gradient-to-r from-purple-600 via-purple-500 to-pink-500 hover:from-purple-500 hover:via-purple-400 hover:to-pink-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:scale-[1.02] active:scale-[0.98]"
+                            className="w-full py-3 sm:py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-[1.02] active:scale-[0.98] text-sm sm:text-base"
                         >
                             {isLogin ? "Sign In" : "Create Account"}
                         </button>
@@ -197,7 +197,7 @@ function SignInContent() {
                             <button
                                 type="button"
                                 onClick={() => setIsLogin(!isLogin)}
-                                className="text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
+                                className="text-indigo-400 hover:text-indigo-300 transition-colors font-medium"
                             >
                                 {isLogin ? "Sign up" : "Sign in"}
                             </button>
@@ -230,7 +230,7 @@ function SignInContent() {
 
 export default function SignIn() {
     return (
-        <Suspense fallback={<div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center"><div className="text-white text-xl">Loading...</div></div>}>
+        <Suspense fallback={<div className="min-h-screen bg-zinc-950 flex items-center justify-center"><div className="text-white text-xl">Loading...</div></div>}>
             <SignInContent />
         </Suspense>
     )

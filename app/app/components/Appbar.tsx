@@ -1,24 +1,49 @@
 "use client"
 import { signIn, signOut, useSession } from "next-auth/react"
 import Link from "next/link"
+import { useState, useEffect } from "react"
 
 const Appbar = () => {
   const session = useSession()
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 80)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-[#0a0a0a]/80 backdrop-blur-xl supports-[backdrop-filter]:bg-[#0a0a0a]/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-pink-600 group-hover:scale-105 transition-transform duration-300 shadow-lg shadow-purple-500/20">
-                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-                </svg>
-              </div>
-              <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">Muzer</span>
+    <nav className="fixed top-0 w-full z-50 px-4">
+      <div
+        className={`max-w-7xl mx-auto mt-4 px-6 py-4 rounded-2xl transition-all duration-300 backdrop-blur-xl ${
+          scrolled
+            ? "bg-zinc-950/70 border border-white/10"
+            : "bg-zinc-950/40"
+        }`}
+      >
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-3 group">
+            <span className="text-xl font-bold tracking-tight">Muzer</span>
+          </Link>
+
+          {/* Navigation Links */}
+          <div className="hidden md:flex items-center gap-8">
+            <Link href="/" className="text-sm text-gray-400 hover:text-white transition-colors">
+              Home
+            </Link>
+            <Link href="#how-it-works" className="text-sm text-gray-400 hover:text-white transition-colors">
+              How It Works
+            </Link>
+            <Link href="#features" className="text-sm text-gray-400 hover:text-white transition-colors">
+              Features
             </Link>
           </div>
 
+          {/* Right Buttons */}
           <div className="flex items-center gap-4">
             {session.data?.user ? (
               <div className="flex items-center gap-4">
@@ -35,18 +60,18 @@ const Appbar = () => {
             ) : (
               <div className="flex items-center gap-3">
                 <button
-                  className="relative group px-6 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-semibold shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 overflow-hidden"
+                  className="relative group px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm font-semibold shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 overflow-hidden"
                   onClick={() => signIn(undefined, { callbackUrl: '/' })}
                 >
                   <span className="relative z-10">Login / Signup</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
               </div>
             )}
           </div>
         </div>
       </div>
-    </header>
+    </nav>
   )
 }
 

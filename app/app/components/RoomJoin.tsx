@@ -14,20 +14,20 @@ export default function RoomJoin() {
     };
 
     return (
-        <div className="mt-8 flex flex-col items-center">
-            <p className="text-neutral-400 mb-2 text-sm">Have a Room ID?</p>
-            <form onSubmit={handleJoin} className="flex items-center gap-2">
+        <div className="mt-6 sm:mt-8 flex flex-col items-center w-full">
+            <p className="text-gray-400 mb-2 text-sm">Have a Room ID?</p>
+            <form onSubmit={handleJoin} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
                 <input
                     type="text"
                     value={roomId}
                     onChange={(e) => setRoomId(e.target.value)}
                     placeholder="Enter Room ID..."
-                    className="bg-black/50 border border-neutral-700 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-purple-500 w-64"
+                    className="bg-zinc-950/50 border border-white/10 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 text-sm text-white focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 w-full sm:w-64"
                 />
                 <button
                     type="submit"
                     disabled={!roomId.trim()}
-                    className="bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                    className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:opacity-50 disabled:cursor-not-allowed text-white px-4 py-2 sm:py-2.5 rounded-lg text-sm font-medium transition-all w-full sm:w-auto"
                 >
                     Join
                 </button>
